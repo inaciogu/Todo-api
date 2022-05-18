@@ -1,4 +1,5 @@
 import express from 'express';
+import connectDatabase from './connection';
 
 export default class App {
   public app: express.Application;
@@ -9,6 +10,7 @@ export default class App {
   }
 
   public startServer(PORT: string | number = 3001): void {
+    connectDatabase();
     this.app.listen(PORT, () => console.log(`Server running here 👉 http://localhost:${PORT}`));
   }
 }
