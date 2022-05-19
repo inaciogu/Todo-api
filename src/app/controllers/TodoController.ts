@@ -78,6 +78,18 @@ export default class TodoController {
     }
   };
 
+  switchStatus = async (req: Request, res: Response): Promise<typeof res> => {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+
+      const response = await this.service.switchStatus(id, status);
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
   delete = async (req: Request, res: Response): Promise<typeof res> => {
     try {
       const { id } = req.params;

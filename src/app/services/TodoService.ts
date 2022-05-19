@@ -32,6 +32,13 @@ export default class TodoService {
     return this.model.update(id, obj);
   }
 
+  async switchStatus(id: string, status: string): Promise<Todo | ServiceError | null> {
+    const parsed = todoSchema.safeParse(status);
+    if (!parsed.success) return { error: parsed.error };
+
+    return this.model.switchStatus(id, status);
+  }
+
   async delete(id: string): Promise<Todo | ServiceError | null> {
     return this.model.delete(id);
   }

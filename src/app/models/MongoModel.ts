@@ -22,6 +22,11 @@ export default abstract class MongoModel<T> implements Model<T> {
     return response;
   };
 
+  switchStatus = async (id: string, status: string): Promise<T | null> => {
+    const response = this.model.findOneAndUpdate({ _id: id }, { status }, { new: true });
+    return response;
+  };
+
   delete = async (id: string): Promise<T | null> => {
     const response = this.model.findOneAndDelete({ _id: id });
     return response;
