@@ -26,6 +26,15 @@ export default class TodoController {
       const todo = req.body;
 
       const response = await this.service.create(todo);
+
+      if (!response) {
+        return res.status(404).json({ message: 'Object not found' });
+      }
+
+      if ('error' in response) {
+        return res.status(400).json(response);
+      }
+
       return res.status(201).json(response);
     } catch (error) {
       return res.status(500).json({ message: 'Internal server error' });
@@ -37,6 +46,11 @@ export default class TodoController {
       const { id } = req.params;
 
       const response = await this.service.listOne(id);
+
+      if (!response) {
+        return res.status(404).json({ message: 'Object not found' });
+      }
+
       return res.status(200).json(response);
     } catch (error) {
       return res.status(500).json({ message: 'Internal server error' });
@@ -49,6 +63,15 @@ export default class TodoController {
       const todo = req.body;
 
       const response = await this.service.update(id, todo);
+
+      if (!response) {
+        return res.status(404).json({ message: 'Object not found' });
+      }
+
+      if ('error' in response) {
+        return res.status(400).json(response);
+      }
+
       return res.status(200).json(response);
     } catch (error) {
       return res.status(500).json({ message: 'Internal server error' });
@@ -60,6 +83,10 @@ export default class TodoController {
       const { id } = req.params;
 
       const response = await this.service.delete(id);
+
+      if (!response) {
+        return res.status(404).json({ message: 'Object not found' });
+      }
 
       return res.status(200).json(response);
     } catch (error) {
