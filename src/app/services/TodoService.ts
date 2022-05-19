@@ -24,4 +24,11 @@ export default class TodoService {
   async listOne(id: string): Promise<Todo | ServiceError | null> {
     return this.model.listOne(id);
   }
+
+  async update(id: string, obj: Todo): Promise<Todo | ServiceError | null> {
+    const parsed = todoSchema.safeParse(obj);
+    if (!parsed.success) return { error: parsed.error };
+
+    return this.model.update(id, obj);
+  }
 }
