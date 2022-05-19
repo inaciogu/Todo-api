@@ -20,4 +20,8 @@ export default class TodoService {
   async list(): Promise<Todo[] | ServiceError> {
     return this.model.list();
   }
+
+  async listOne(id: string): Promise<Todo | ServiceError | null> {
+    return this.model.listOne(id);
+  }
 }
