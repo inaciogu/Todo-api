@@ -16,4 +16,8 @@ export default class TodoService {
     }
     return this.model.create(obj);
   }
+
+  async list(): Promise<Todo[] | ServiceError> {
+    return this.model.list();
+  }
 }
