@@ -13,7 +13,7 @@ export default class CustomRouter {
     this.router.get(`${route}/:id`, controller.listOne);
     this.router.post(route, controller.create);
     this.router.put(`${route}/:id`, controller.update);
-    this.router.put(`${route}/:id`, controller.switchStatus);
+    this.router.put(`${route}/status/:id`, controller.switchStatus);
     this.router.delete(`${route}/:id`, controller.delete);
   };
 }
