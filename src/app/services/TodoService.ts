@@ -33,9 +33,6 @@ export default class TodoService {
   }
 
   async switchStatus(id: string, status: string): Promise<Todo | ServiceError | null> {
-    const parsed = todoSchema.safeParse(status);
-    if (!parsed.success) return { error: parsed.error };
-
     return this.model.switchStatus(id, status);
   }
 
