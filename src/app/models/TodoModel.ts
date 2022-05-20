@@ -7,7 +7,7 @@ interface TodoDocument extends Todo, Document {}
 const TodoSchema = new Schema<TodoDocument>({
   name: String,
   status: String,
-});
+}, { versionKey: false });
 
 export default class TodoModel extends MongoModel<Todo> {
   constructor(model = createModel('Todo', TodoSchema)) {
