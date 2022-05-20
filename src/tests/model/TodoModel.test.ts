@@ -4,16 +4,19 @@ import { expect } from 'chai';
 import TodoModel from '../../app/models/TodoModel';
 
 const mockedTodo = {
+  _id: 'asasd1sd3441ds',
   name: 'Estudar',
   status: 'pendente',
 };
 
 const mockedTodos = [
   {
+    _id: '123das231ds',
     name: 'Estudar',
     status: 'pendente',
   },
   {
+    _id: 'asdasdbk1231',
     name: 'malhar',
     status: 'pendente',
   },
@@ -52,6 +55,21 @@ describe('Todo Model tests', () => {
     it('Returns a array with all todos', async () => {
       const response = await todoModel.list();
       expect(response).to.be.deep.equal(mockedTodos);
+    });
+  });
+
+  describe('3 - "List One" method', () => {
+    before(async () => {
+      sinon.stub(mongoose.Model, 'findOne').resolves(mockedTodo);
+    });
+
+    after(() => {
+      sinon.restore();
+    });
+
+    it('Returns the todo item with the id passed', async () => {
+      const response = await todoModel.listOne(mockedTodo._id);
+      expect(response).to.be.deep.equal(mockedTodo);
     });
   });
 });
