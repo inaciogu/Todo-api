@@ -4,6 +4,11 @@ export const todoReturn = {
   status: 'pendente',
 };
 
+export const todoBody = {
+  name: 'Estudar',
+  status: 'pendente',
+};
+
 export const todoArray = [
   {
     _id: '123das231ds',
