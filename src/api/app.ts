@@ -14,7 +14,7 @@ export default class App {
     this.app.listen(PORT, () => console.log(`Server running here 👉 http://localhost:${PORT}`));
   }
 
-  public addRoute(router: Router) {
+  public addRouter(router: Router) {
     this.app.use(router);
   }
 }
